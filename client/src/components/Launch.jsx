@@ -25,12 +25,10 @@ export class Launch extends Component {
       <Fragment>
         <Query query = {LAUNCH_QUERY} variables = {{id}}>
         {
-          (loading, error, data) => {
-            console.log('data', data)
+          ({loading, error, data}) => {
             if (loading) return <h4> loading... </h4>
             if (error) console.log(error)
-            console.log(data)
-
+        
             const {flight_number, name, date_local, success, details, rocket }  = data.launch;
 
             return <div>
@@ -38,6 +36,7 @@ export class Launch extends Component {
             </div>
           }
         }
+
         </Query>
       </Fragment>
     )
