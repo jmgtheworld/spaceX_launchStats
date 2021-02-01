@@ -5,8 +5,6 @@ const app = express();
 const cors = require('cors');
 const schema = require('./schema')
 
-
-
 //Allow cross-origin
 app.use(cors());
 

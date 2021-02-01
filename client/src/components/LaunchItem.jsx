@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames';
 import Moment from 'react-moment';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function LaunchItem(props) {
   const {id, flight_number, name, date_local, success, details} = props.launch;
