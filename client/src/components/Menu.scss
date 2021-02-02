@@ -1,0 +1,17 @@
+.menuBar {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 15px;
+  border-color: whitesmoke !important;
+  border-style: none none solid none !important;
+}
+
+.menuItem{
+  font-size: 17px;
+  margin-right: 30px;
+  padding: 10px;
+}
+
+.menuItem:hover{
+  font-weight: bold;
+}

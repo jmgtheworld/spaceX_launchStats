@@ -28,7 +28,7 @@ export default function Launches() {
   return (
 
     <Fragment>
-      <h1 className="display-4 my-3"> Launches </h1>
+      <h3 className="display-5 my-4"> SpaceX Launches </h3>
       <MissionKey />
       {
         data.launches.map((launch) => {
