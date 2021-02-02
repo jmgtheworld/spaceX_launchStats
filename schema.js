@@ -39,6 +39,21 @@ const RocketType = new GraphQLObjectType({
   })
 })
 
+//Rocket Type
+const CapsuleType = new GraphQLObjectType({
+  name: 'Capsule',
+  fields: () => ({
+    id: { type: GraphQLString },
+    serial: { type: GraphQLString },
+    reuse_count: { type: GraphQLInt },
+    water_landings: { type: GraphQLInt },
+    land_landings: { type: GraphQLInt },
+    type: { type: GraphQLString },
+    status: { type: GraphQLString },
+    last_update: { type: GraphQLString },
+  })
+})
+
 //Root Query
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -77,6 +92,14 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parent, args) {
         return axios.get(`https://api.spacexdata.com/v4/rockets/${args.rocket_id}`)
+        .then(res => res.data);
+      }
+    },
+
+    capsules: {
+      type: new GraphQLList(CapsuleType),
+      resolve(parent, args) {
+        return axios.get('https://api.spacexdata.com/v4/capsules')
         .then(res => res.data);
       }
     }
