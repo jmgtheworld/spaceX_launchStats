@@ -60,11 +60,12 @@ export default function LandingZone(props) {
         <h4 className = "mb-3"> Landing Zone Details</h4>
         <div className = "landingzoneDetail">
         <h5 className = "mb-3"> Status: <span className = {status === "active" ? "text-success" : "text-danger"} > {status} </span> </h5>
-        <h5 className = "mb-3"> Location: {region}, {locality} </h5>
+        <h5 className = "mb-5"> Location: {region}, {locality} </h5>
         </div>
+        <h5 className = "mb-2"> Details </h5>
         <ul className = "list-group">
           <li className = "list-group-item details"> 
-            Details : {details}
+            {details}
           </li>
         </ul>
       </div>

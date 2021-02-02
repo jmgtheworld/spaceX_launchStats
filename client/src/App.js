@@ -6,6 +6,7 @@ import Launch from './components/Launch';
 import Capsules from './components/Capsules';
 import LandingZones from './components/LandingZones';
 import LandingZone from './components/LandingZone';
+import About from './components/About';
 import Menu from './components/Menu';
 
 import './App.css';
@@ -38,6 +39,9 @@ function App() {
             <LandingZones />
           </Route>
           <Route exact path = "/landingZones/:landingpad_id" component = {LandingZone} />
+          <Route exact path = "/about" >
+            <About />
+          </Route>
         </div>
       </Router>
     </ApolloProvider>

@@ -19,12 +19,11 @@ const options = {
   zoomControl: true,
 };
 
-
 export default function Map(props) {
 
   const {lat, lng} = props;
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyAQw0HYw0fT-y-YEwYNQWiH0DbV_XgAl_E",
+    googleMapsApiKey: "AIzaSyDbY4PyHsQNDz0aJ6vTMw_2-He-NwKMces",
   });
 
   const center = {

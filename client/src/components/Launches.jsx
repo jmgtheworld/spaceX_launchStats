@@ -30,8 +30,10 @@ export default function Launches() {
   return (
 
     <Fragment>
-      <h3 className="display-5 my-4"> SpaceX Launches </h3>
-      <MissionKey />
+      <div className = "LaunchesGroup">
+        <h3 className="display-5 my-4 LaunchesTitle"> SpaceX Launches </h3>
+        <MissionKey />
+      </div>
       {
         data.launches.map((launch) => {
           return <LaunchItem key = {launch.id} launch = {launch}/>

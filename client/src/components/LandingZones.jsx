@@ -32,7 +32,7 @@ export default function LandingZones() {
 
   return (
     <Fragment>
-      <h3 className="display-5 my-4"> Landing Zones </h3>
+      <h3 className="display-5 my-4"> SpaceX Landing Zones </h3>
       {
         data.landingpads.map((pad) => {
           return <LandingZoneItem key = {pad.id} pad = {pad}/>
