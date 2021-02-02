@@ -70,6 +70,7 @@ const LandingPadType = new GraphQLObjectType({
     landing_successes: { type: GraphQLInt },
     details: { type: GraphQLString },
     status: { type: GraphQLString },
+    launches: {type: new GraphQLList(GraphQLString) },
   })
 })
 

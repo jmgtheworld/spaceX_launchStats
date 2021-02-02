@@ -12,23 +12,26 @@ const mapContainerStyle = {
   height: "65vh",
   width: "100%",
 };
+
 const options = {
   styles: mapStyles,
   disableDefaultUI: true,
   zoomControl: true,
 };
-const center = {
-  lat: 28.522442668101252,
-  lng: -80.86678503000974,
-};
+
 
 export default function Map(props) {
 
   const {lat, lng} = props;
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyC33XtdGBQ9QDcGC2wC2GF31lDH2-em0qI",
+    googleMapsApiKey: "AIzaSyAQw0HYw0fT-y-YEwYNQWiH0DbV_XgAl_E",
   });
 
+  const center = {
+    lat: lat,
+    lng: lng,
+  };
+  
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
@@ -37,7 +40,7 @@ export default function Map(props) {
   if (!isLoaded) return <Spinner animation="border" variant="secondary" />;
 
   return (
-    <div>
+    <div className = "my-5">
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}

@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 
 import Map from './Map';
 
+import "./LandingZone.scss";
+
 const LANDINGPAD_QUERY = gql`
   query LandingPadsQuery($id: String!){
     landingpad(landingpad_id: $id) {
@@ -20,6 +22,8 @@ const LANDINGPAD_QUERY = gql`
       landing_attempts
       landing_successes
       details
+      status
+      launches
     }
   }
 `;
@@ -41,21 +45,25 @@ export default function LandingZone(props) {
   )
 
   console.log(data)
-  const {name, full_name, latitude, longitude, details }  = data.landingpad;
+  const {name, full_name, locality, region, latitude, longitude, details, status, launches }  = data.landingpad;
 
   return (
     <Fragment>
 
-      <h1 className="display-4 my-3"> 
-        <span className = "text-white"> {full_name} ({name}) </span> 
-      </h1>
+      <h3 className="display-4 my-3"> 
+        <span className = "text-white landingzoneH3"> {full_name} ({name}) </span> 
+      </h3>
 
-      <Link to = "/" className = "btn btn-secondary"> Back </Link>
+      <Link to = "/landingZones" className = "btn btn-secondary"> Back </Link>
 
       <div className = "detailContainer">
         <h4 className = "mb-3"> Landing Zone Details</h4>
+        <div className = "landingzoneDetail">
+        <h5 className = "mb-3"> Status: <span className = {status === "active" ? "text-success" : "text-danger"} > {status} </span> </h5>
+        <h5 className = "mb-3"> Location: {region}, {locality} </h5>
+        </div>
         <ul className = "list-group">
-          <li className = "list-group-item"> 
+          <li className = "list-group-item details"> 
             Details : {details}
           </li>
         </ul>

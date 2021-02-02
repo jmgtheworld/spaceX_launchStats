@@ -18,6 +18,7 @@ const LANDINGPADS_QUERY = gql`
       landing_attempts
       landing_successes
       details
+      launches
     }
   }
 `;
@@ -28,8 +29,6 @@ export default function LandingZones() {
 
   if (loading) return <Spinner animation="border" variant="dark" className = "spinner"/>;
   if (error) return <p className = "errorMessage"> Whoops. That's an Error </p>;
-
-  console.log(data.landingpads)
 
   return (
     <Fragment>
