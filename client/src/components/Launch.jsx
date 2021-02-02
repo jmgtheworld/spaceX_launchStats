@@ -49,7 +49,8 @@ export default function Launch (props) {
   if (loading_launch || loading_rocket) return <Spinner animation="border" variant="dark" className = "spinner"/>;
   if (error_launch || error_rocket) return (
     <Fragment> 
-      <Link to = "/" className = "btn btn-secondary back" > Back to Launches </Link> <p className = "errorMessage"> Whoops. That's an Error </p> 
+      <Link to = "/" className = "btn btn-secondary back" > Back to Launches </Link> 
+      <p className = "errorMessage"> Whoops. That's an Error </p> 
     </Fragment>
   )
 

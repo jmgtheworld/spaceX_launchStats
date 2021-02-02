@@ -3,6 +3,7 @@ const axios = require('axios');
 const { 
   GraphQLObjectType, 
   GraphQLInt, 
+  GraphQLFloat,
   GraphQLString, 
   GraphQLBoolean,
   GraphQLList,
@@ -39,7 +40,7 @@ const RocketType = new GraphQLObjectType({
   })
 })
 
-//Rocket Type
+//Capsule Type
 const CapsuleType = new GraphQLObjectType({
   name: 'Capsule',
   fields: () => ({
@@ -53,6 +54,25 @@ const CapsuleType = new GraphQLObjectType({
     last_update: { type: GraphQLString },
   })
 })
+
+// LandingPad Type
+const LandingPadType = new GraphQLObjectType({
+  name: 'LandingPad',
+  fields: () => ({
+    id: { type: GraphQLString },
+    name: { type: GraphQLString },
+    full_name: { type: GraphQLString },
+    locality: { type: GraphQLString },
+    region: { type: GraphQLString },
+    latitude: { type: GraphQLFloat },
+    longitude: { type: GraphQLFloat },
+    landing_attempts: { type: GraphQLInt },
+    landing_successes: { type: GraphQLInt },
+    details: { type: GraphQLString },
+    status: { type: GraphQLString },
+  })
+})
+
 
 //Root Query
 const RootQuery = new GraphQLObjectType({
@@ -100,6 +120,25 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(CapsuleType),
       resolve(parent, args) {
         return axios.get('https://api.spacexdata.com/v4/capsules')
+        .then(res => res.data);
+      }
+    },
+
+    landingpads: {
+      type: new GraphQLList(LandingPadType),
+      resolve(parent, args) {
+        return axios.get('https://api.spacexdata.com/v4/landpads')
+        .then(res => res.data);
+      }
+    },
+
+    landingpad: {
+      type: LandingPadType,
+      args: {
+        landingpad_id: { type: GraphQLString }
+      },
+      resolve(parent, args) {
+        return axios.get(`https://api.spacexdata.com/v4/landpads/${args.landingpad_id}`)
         .then(res => res.data);
       }
     }

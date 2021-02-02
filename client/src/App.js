@@ -5,7 +5,9 @@ import Launches from './components/Launches';
 import Launch from './components/Launch';
 import Capsules from './components/Capsules';
 import LandingZones from './components/LandingZones';
+import LandingZone from './components/LandingZone';
 import Menu from './components/Menu';
+
 import './App.css';
 import logo from './spaceX.jpg'
 
@@ -35,6 +37,7 @@ function App() {
           <Route exact path = "/landingZones" >
             <LandingZones />
           </Route>
+          <Route exact path = "/landingZones/:landingpad_id" component = {LandingZone} />
         </div>
       </Router>
     </ApolloProvider>
