@@ -2,7 +2,9 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Launches from './components/Launches';
-import Launch from './components/Launch'
+import Launch from './components/Launch';
+import Capsules from './components/Capsules';
+import Menu from './components/Menu';
 import './App.css';
 import logo from './spaceX.jpg'
 
@@ -21,10 +23,14 @@ function App() {
             alt = "spaceX" 
             style = {{width: 250, display: 'block', margin: 'auto'}}
           />
+          <Menu />
           <Route exact path = "/" >
             <Launches />
           </Route>
           <Route exact path = "/launch/:launch_id" component = {Launch} />
+          <Route exact path = "/capsules" >
+            <Capsules />
+          </Route>
         </div>
       </Router>
     </ApolloProvider>

@@ -1,11 +1,11 @@
 import React, { Component, Fragment, useState, useEffect } from 'react'
 import { gql, useQuery } from '@apollo/client';
-
 import { Spinner } from 'react-bootstrap';
-
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
+import Images from './Images';
 
+import "./Launch.scss";
 
 const LAUNCH_QUERY = gql`
   query LaunchQuery($id: String!) {
@@ -25,15 +25,13 @@ const ROCKET_QUERY = gql`
     rocket(rocket_id: $id) {
       id
       name
-      type
+      flickr_images
       active
       first_flight
       cost_per_launch
     }
   }
 `;
-
-
 
 export default function Launch (props) {
 
@@ -48,11 +46,25 @@ export default function Launch (props) {
     variables: {id: data_launch && data_launch.launch.rocket},
   });
 
-  if (loading_launch || loading_rocket) return <Spinner animation="border" variant="light" />;
+  if (loading_launch || loading_rocket) return <Spinner animation="border" variant="light" className = "spinner"/>;
   if (error_launch || error_rocket) return `Whoops, Error`;
 
   const {flight_number, name, rocket, success, details, date_local}  = data_launch.launch;
-  const {id, type, active, first_flight, cost_per_launch}  = data_rocket.rocket;
+  const {id, flickr_images, active, first_flight, cost_per_launch}  = data_rocket.rocket;
+
+  const listofImages = flickr_images.map((image) => {
+    return (
+      <ul className = "list-group rocketImageGroup">
+        <img key = {image} src = {image} alt = "Rocket Image" className = "rocketImage"/>
+      </ul>
+    )
+  })
+
+  const numberWithCommas = cost_per_launch => {
+    return cost_per_launch.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  const costPerLaunch = numberWithCommas(cost_per_launch);
 
   return (
         <Fragment>
@@ -61,6 +73,7 @@ export default function Launch (props) {
             <span className = "text-dark"> Mission: </span> {name} 
           </h1>
 
+        <div className = "detailContainer">
           <h4 className = "mb-3"> Launch Details</h4>
           <ul className = "list-group">
             <li className = "list-group-item"> 
@@ -81,17 +94,13 @@ export default function Launch (props) {
               Rocket ID : {rocket} 
             </li>
           </ul>
+        </div>
 
+        <div className = "detailContainer">
           <h4 className = "mb-3"> Rocket Details</h4>
           <ul className = "list-group">
             <li className = "list-group-item"> 
-              Rocket ID : {id}
-            </li>
-            <li className = "list-group-item"> 
               Rocket Name : {data_rocket.rocket.name}
-            </li>
-            <li className = "list-group-item"> 
-              Rocket Type : {type}
             </li>
             <li className = "list-group-item"> 
               Active : <span className = {active ? "text-success" : "text-danger"}> 
@@ -102,13 +111,18 @@ export default function Launch (props) {
               First Flight : {first_flight} 
             </li>
             <li className = "list-group-item"> 
-              Cost Per Launch : {cost_per_launch} 
+              Cost Per Launch : $ {costPerLaunch} 
             </li>
           </ul>
-        </Fragment>
-    )
+        </div>
 
-
+        <div className = "detailContainer">
+          <h4 className = "mb-3"> Rocket Images</h4>
+          <Images images = {flickr_images} />
+        </div>
+ 
+      </Fragment>
+  )
 }
 
 
