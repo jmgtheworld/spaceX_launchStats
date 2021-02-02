@@ -26,7 +26,7 @@ export default function Capsules () {
   const { loading, error, data } = useQuery(CAPSULES_QUERY);
 
   if (loading) return <Spinner animation="border" variant="dark" className = "spinner"/>;
-  if (error) return <p>Error : {error} </p>;
+  if (error) return <p className = "errorMessage"> Whoops. That's an Error </p> ;
 
   console.log(data.capsules)
 
