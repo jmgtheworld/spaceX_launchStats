@@ -7,9 +7,8 @@ export default function Images(props) {
 
   const listofImages = images.map((image) => {
     return (
-        <Carousel.Item interval = {5000}>
+        <Carousel.Item key = {image} interval = {5000}>
           <img
-            key = {image}
             className = "d-block w-100"
             src = {image}
             alt = "First slide"

@@ -46,7 +46,7 @@ export default function Launch (props) {
     variables: {id: data_launch && data_launch.launch.rocket},
   });
 
-  if (loading_launch || loading_rocket) return <Spinner animation="border" variant="light" className = "spinner"/>;
+  if (loading_launch || loading_rocket) return <Spinner animation="border" variant="dark" className = "spinner"/>;
   if (error_launch || error_rocket) return `Whoops, Error`;
 
   const {flight_number, name, rocket, success, details, date_local}  = data_launch.launch;
@@ -68,10 +68,10 @@ export default function Launch (props) {
 
   return (
         <Fragment>
-          <Link to ="/" className = "btn btn-secondary"> Back </Link>
           <h1 className="display-4 my-3"> 
             <span className = "text-dark"> Mission: </span> {name} 
           </h1>
+          <Link to = "/" className = "btn btn-secondary"> Back </Link>
 
         <div className = "detailContainer">
           <h4 className = "mb-3"> Launch Details</h4>
