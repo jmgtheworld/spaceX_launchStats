@@ -47,7 +47,11 @@ export default function Launch (props) {
   });
 
   if (loading_launch || loading_rocket) return <Spinner animation="border" variant="dark" className = "spinner"/>;
-  if (error_launch || error_rocket) return `Whoops, Error`;
+  if (error_launch || error_rocket) return (
+    <Fragment> 
+      <Link to = "/" className = "btn btn-secondary back" > Back to Launches </Link> <p className = "errorMessage"> Whoops. That's an Error </p> 
+    </Fragment>
+  )
 
   const {flight_number, name, rocket, success, details, date_local}  = data_launch.launch;
   const {id, flickr_images, active, first_flight, cost_per_launch}  = data_rocket.rocket;

@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Launches from './components/Launches';
 import Launch from './components/Launch';
 import Capsules from './components/Capsules';
+import LandingZones from './components/LandingZones';
 import Menu from './components/Menu';
 import './App.css';
 import logo from './spaceX.jpg'
@@ -30,6 +31,9 @@ function App() {
           <Route exact path = "/launch/:launch_id" component = {Launch} />
           <Route exact path = "/capsules" >
             <Capsules />
+          </Route>
+          <Route exact path = "/landingZones" >
+            <LandingZones />
           </Route>
         </div>
       </Router>
